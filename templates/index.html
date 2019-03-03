@@ -1,0 +1,54 @@
+{% extends 'base/header.html' %}
+{% block main %}
+    <div class="main">
+        <div class="main-left">
+            {% for row in article_list %}
+                <div class="article">
+                    <div class="articleTitle"><a href="">{{ row.title }}</a></div>
+                    <div class="img-summary">
+                        <div class="img"><img src="/static/img/20181207212735.png" alt="rayh"></div>
+                        <p><a href="">{{ row.summary }}</a></p>
+                    </div>
+                    <div class="article-bottom">
+                        <a href="">
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                            <b>rayh</b>
+                        </a>
+                        <a href="">{{ row.ctime }}</a>
+                        <a href="">
+                            <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                            <span>评论</span>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            <span>赞</span>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+{# 分页开始 #}
+            <div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination myPage">
+                        {{ page_str|safe }}
+                    </ul>
+                </nav>
+            </div>
+{# 分页结束 #}
+        </div>
+        <div class="main-right">
+            <div class="panel panel-default">
+                <div class="panel-heading">吐血推荐</div>
+                <div class="panel-body">
+                    Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">评论最多</div>
+                <div class="panel-body">
+                    Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

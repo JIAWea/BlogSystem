@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客首页</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .top{
+            width: 100%;
+            margin-bottom: 10px
+        }
+        .topTitle{
+            width: 1200px;
+            height: 50px;
+            line-height: 50px;
+            margin: 0 auto;
+        }
+        .topTitle a{
+            display: inline-block;
+            padding: 0px 15px;
+            color: grey;
+            text-decoration: none;
+        }
+        .topTitle a:hover{
+            color: black;
+            background-color: lightgray;
+        }
+        .title-left{
+            float: left;
+        }
+        .title-right{
+            float: right;
+        }
+        /********头部结束********/
+
+        /********中间内容********/
+        .main{
+            width: 1200px;
+            height: 800px;
+            margin: 0 auto;
+        }
+        .main .main-left{
+            width: 68%;
+            {#border: 1px solid;#}
+            float: left;
+        }
+        .main .main-right{
+            width: 30%;
+            {#border: 1px solid red;#}
+            float: right;
+        }
+
+        .article{
+            border-bottom: 1px dashed lightgray;
+            margin-bottom: 10px;
+        }
+        .articleTitle{
+            font-size: 20px;
+            color: grey;
+        }
+        .article .img-summary{
+            width: 816px;
+
+        }
+        .article .img-summary .img{
+            width: 80px;
+            height: 80px;
+            float: left;
+            margin-right: 5px;
+        }
+        .article .img-summary img{
+            width: 100%;
+            float: left;
+        }
+        .article .img-summary p{
+            text-indent: 2em;
+        }
+        .article-bottom{
+            clear: both;
+            margin-top: -8px;
+            margin-bottom: 5px;
+        }
+        .article-bottom a{
+            display: inline-block;
+            padding: 0 10px 0 0;
+        }
+        .article-bottom a:hover{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="top navbar navbar-default">
+            <div class="topTitle">
+                <div class="title-left">
+                    <a href="/">这是博客主站</a>
+                    <a href="/">全部</a>
+                    {% for item in article_type_list %}
+{#                    [(1, 'Python'), (2, 'Linux'), (3, 'JavaScript'), (4, 'PHP')]#}
+                    {% if item.0 == article_type_id %}
+                        <a style="background-color: lightgray; color: white;" href="/all/{{ item.0 }}.html">{{ item.1 }}</a>
+{#                    <a href="/all/2.html">Liunx</a>#}
+{#                    <a href="/all/3.html">JavaScript</a>#}
+{#                    <a href="/all/4.html">PHP</a>#}
+                    {% else %}
+                        <a href="/all/{{ item.0 }}.html">{{ item.1 }}</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="title-right">
+                    {% if request.session.username %}
+                        <a href="">{{ request.session.username }}</a>
+                        <a href="">我的博客</a>
+                        <a href="">管理</a>
+                        <a href="/logout.html">退出</a>
+                    {% else %}
+                        <a href="/login.html">登录</a>
+                        <a href="/register.html">注册</a>
+                    {% endif %}
+                </div>
+            </div>
+
+    </div>
+    {% block main %}
+
+    {% endblock %}
+</body>
+</html>

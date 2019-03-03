@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的主页</title>
+    <link rel="stylesheet" href="/static/css/theme/{{ blog.theme }}.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css">
+    {% block style %}{% endblock %}
+</head>
+<body>
+    <div class="title">
+        <div class="title-name">{{ blog.title }}</div>
+        <div class="title-left">
+            <a href="/">首页</a>
+            <a href="/{{ blog.surfix }}.html">个人首页</a>
+            <a href="">管理</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main-left">
+            <div>
+                <span>公告</span>
+                <ul class="infomation">
+                    <li>昵称：{{ blog.title }}</li>
+                    <li>关注：{{ follower }}</li>
+                    <li>粉丝：{% if fans == 0 %}
+                            {{ 0|safe }}{% else %}{{ fans }}
+                        {% endif %}
+                    </li>
+                    <li>邮箱：{{ blog.uid.email }}</li>
+                </ul>
+            </div>
+            <div class="summary">{{ blog.summary }}</div>
+            <div>
+                <span>标签</span>
+                <ul class="infomation">
+                    {% for item in tags %}
+                        <li><a href="/{{ item.bid.surfix }}/tag/{{ item.id }}.html">{{ item.caption }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <span>分类</span>
+                <ul class="infomation">
+                    {% for item in category %}
+                        <li><a href="/{{ item.bid.surfix }}/category/{{ item.id }}.html">{{ item.caption }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <span>时间</span>
+                <ul class="infomation">
+                    {% for item in ctime %}
+                        <li><a href="/{{ item.blog.surfix }}/date/{{ item.p_time }}.html">{{ item.p_time }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="main-right">
+            {% block article %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

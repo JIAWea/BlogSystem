@@ -1,0 +1,120 @@
+{% extends 'base/backend_demo.html' %}
+{% block css %}
+    <style>
+        .article-top,.article{
+            height: 41px;
+            line-height: 41px;
+            background-color: #f4f4f4;
+        }
+    .search{
+        height: 32px;
+        line-height: 32px;
+        border: 1px dashed lightgray;
+
+    }
+    .filter{
+        margin: 18px 0 18px 20px;
+    }
+    .type a,.catagory a{
+        display: inline-block;
+        padding: 0 10px;
+        {#background-color: #1b6d85;#}
+        margin: 8px 8px;
+    }
+    .left{float: left;}
+    .right{float: right;}
+    .article .title-right{
+        background-color: royalblue;
+        color: white;
+        padding: 0 10px;
+        margin-right: 20px;
+    }
+    .article .title-right a{
+        color: white;
+        text-decoration: none;
+    }
+    .table{
+        border: 1px;
+    }
+    .type a,.catagory a{
+        border: 1px solid lightgray;
+        padding: 5px 10px;
+    }
+    .active{
+        color: white;
+        background-color: coral;
+    }
+    </style>
+{% endblock %}
+{% block article-info %}
+    <div class="article-top">文章管理</div>
+    <div class="search">搜索</div>
+    <div class="filter">
+        <div class="type">
+            {% if kwargs.article_type_id == 0 %}
+                <a class="active" href="article-0-{{ kwargs.category_id }}.html">全部</a>
+                {% else %}
+                <a href="article-0-{{ kwargs.category_id }}.html">全部</a>
+            {% endif %}
+
+            {% for item in type_list %}
+                {% if item.nid == kwargs.article_type_id %}
+                    <a class="active" href="article-{{ item.nid }}-{{ kwargs.category_id }}.html">{{ item.title }}</a>
+                {% else %}
+                    <a href="article-{{ item.nid }}-{{ kwargs.category_id }}.html">{{ item.title }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="catagory">
+            {% if kwargs.category_id == 0 %}
+                <a class="active" href="article-{{ kwargs.article_type_id }}-0.html">全部</a>
+            {% else %}
+                <a href="article-{{ kwargs.article_type_id }}-0.html">全部</a>
+            {% endif %}
+            {% for item in category_list %}
+                {% if item.id == kwargs.category_id %}
+                    <a class="active" href="article-{{ kwargs.article_type_id }}-{{ item.id }}.html">{{ item.caption }}</a>
+                {% else %}
+                    <a href="article-{{ kwargs.article_type_id }}-{{ item.id }}.html">{{ item.caption }}</a>
+                {% endif %}
+{#                <a href="">linux</a>#}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="article">
+        <div class="title-left left">搜索文章</div>
+        <div class="title-right right">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            <a href="/backend/add_article.html">创建新文章</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered" width="100%" border="1">
+        <thead>
+            <tr style="height: 30px">
+                <td width="60%"><b>文章标题</b></td>
+                <td width="40%"><b>操作</b></td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in article_list %}
+            <tr style="height: 30px">
+                <td><a href="">{{ item.title }}</a></td>
+                <td>
+                    <a href="/backend/del_article-{{ item.id }}.html">删除</a>|<a href="/backend/edit_article-{{ item.id }}.html">修改</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

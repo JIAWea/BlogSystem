@@ -1,0 +1,77 @@
+
+*{margin: 0;padding: 0}
+.title{
+    width: 100%;
+    height: 100px;
+    background-color: lightgray;
+}
+.title-name{
+    color: #000;
+    font-size: 40px;
+    padding: 20px 0 0 50px;
+}
+.title-left{
+    float: right;
+}
+.title-left a{
+    display: inline-block;
+    padding: 0 15px;
+}
+
+
+.main-left{
+    width: 20%;
+    float: left;
+    /*border: 1px solid;*/
+}
+.infomation{
+    padding-left: 38px;
+}
+.summary{
+    margin: 8px 0;
+}
+
+.main-right{
+    width: 79%;
+    float: right;
+   /* border: 1px solid;*/
+}
+
+.article{
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed lightgray;
+}
+.article-title{
+    font-size: 38px;
+    text-align: center;
+    margin: 8px 0;
+}
+.article-detail{
+    text-indent: 2em;
+    font-size: 20px;
+}
+.article .thumbsUp,.thumbsDown{
+    display: inline-block;
+    color: dodgerblue;
+    width: 60px;
+    height: 76px;
+    border: 1px solid lightgrey;
+    margin: 10px 26px 10px 0;
+    text-align: center;
+    padding: 8px 8px;
+}
+
+.comment-title{
+    border-top: 1px dashed lightgrey;
+    margin: 10px 0;
+    padding-top: 10px;
+    font-size: 20px;
+}
+.comment-list{
+    border-bottom: 1px dashed lightgrey;
+}
+
+.commentPage{
+    margin: 20px 0;
+}

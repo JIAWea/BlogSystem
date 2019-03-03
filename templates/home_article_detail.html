@@ -1,0 +1,75 @@
+{% extends 'base/home_backend.html' %}
+{% block style %}
+    <link rel="stylesheet" href="/static/kindeditor/themes/simple/simple.css">
+    <script src="/static/kindeditor/kindeditor-all-min.js"></script>
+    <script src="/static/jq/jquery-3.3.1.min.js"></script>
+{% endblock %}
+{% block article %}
+    <div class="article">
+        <p class="article-title">{{ article_list.title }}</p>
+        <div class="article-detail">{{ article_list.detail }}</div>
+        <div>
+            <a class="thumbsUp">
+                <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i>0
+            </a>
+            <a class="thumbsDown">
+                <i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i>0
+            </a>
+        </div>
+        <div class="article-bottom">
+                <span>{{ article_list.ctime }}</span>
+                <span>阅读</span>
+                <span>评论</span>
+        </div>
+        <p class="comment-title">评论区:</p>
+        <div id="commentAll">
+            <div class="comment-list">
+                <span>{{ blog.uid.username }}</span>
+                <p>牛逼</p>
+            </div>
+        </div>
+        <div class="commentPage">这是分页</div>
+        <div class="kindEditor">
+            <textarea id="editor_id" name="content"></textarea>
+            <input type="submit" class="btn btn-default com-btn" value="发表评论" onclick="comBtn()" />
+        </div>
+    </div>
+    <script>
+        var editor;
+        KindEditor.ready(function(K) {
+                editor = K.create('#editor_id',{
+                    resizeType:1,           //是否能改变宽度和长度
+                    //filterMode: true,     //是否过滤标签
+                    width : '700px',
+                    height:'300px',
+                    items:[
+        'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+        'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+        'anchor', 'link', 'unlink', '|', 'about'],      //编辑框的功能栏
+                    uploadJson:'/submitComment',
+                    //htmlTags :[]      //自定义不需要过滤标签
+                });
+        });
+        function comBtn() {
+            data = editor.html();
+            $.ajax({
+                url:'/submitComment',
+                type:'POST',
+                data:{'comment':data},
+                dataType:'JSON',
+                success:function (arg) {
+                    editor.sync();
+                    data = document.getElementById('editor_id').value;
+                    //alert(data);
+                    var div = document.createElement('div');
+                    div.setAttribute('class','comment-list');
+                    div.innerHTML='<span>登录的用户才能评论</span>\n' +
+                        '                <p>'+data+'</p>';
+                    document.getElementById('commentAll').appendChild(div);
+                }
+            });
+
+        }
+</script>
+{% endblock %}

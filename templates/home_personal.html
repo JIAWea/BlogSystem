@@ -1,0 +1,15 @@
+{% extends 'base/home_backend.html' %}
+{% block article %}
+    {% for row in article_list %}
+        <div class="article">
+            <div class="articleTitle"><a href="/{{ blog.surfix }}/{{ row.id }}.html">{{ row.title }}</a></div>
+            <div class="img-summary">{{ row.summary }}</div>
+            <div class="article-bottom">
+                <span>{{ row.ctime }}</span>
+                <span>阅读</span>
+                <span>评论</span>
+                <a href="">编辑</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

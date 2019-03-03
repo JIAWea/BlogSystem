@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <style>
+        .title{
+            text-align: center;
+        }
+        .register{
+            width: 400px;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 20px 20px;
+            margin: 30px auto;
+        }
+        .btn{
+            margin-left: 150px;
+        }
+        .code-style{
+            width: 200px;
+            float: left;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h3>注册页面</h3>
+    </div>
+    <div class="register">
+        <form method="post" action="/register.html">
+            {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">用户名</label>
+            <p>{{ obj.username }}{{ obj.errors.username.0 }}</p>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">密码</label>
+            <p>{{ obj.pwd }}{{ obj.errors.pwd.0 }}</p>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">确认密码</label>
+            <p>{{ obj.confirmPwd }}{{ obj.errors.confirmPwd.0 }}{{ obj.non_field_errors.0 }}</p>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">邮箱</label>
+            <p>{{ obj.email }}{{ obj.errors.email.0 }}</p>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">验证码</label>
+            <p>{{ obj.code }}{{ obj.errors.code.0 }}
+                <img src="/codetest.html" onclick="changeCode(this)" alt="验证码">
+            </p>
+            <p>{{ msg }}</p>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    </div>
+    <script>
+        function changeCode(ths) {
+            ths.src = ths.src + '?';
+        }
+    </script>
+</body>
+</html>

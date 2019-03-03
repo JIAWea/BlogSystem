@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/backend-css.css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <div class="pg-header">
+        <div class="logo left">博客管理系统</div>
+        <div class="menu left">
+            <a href="" class="items">菜单一</a>
+            <a href="" class="items">菜单二</a>
+            <div class="items-set">
+                <a href="" class="items">菜单三</a>
+                <div class="items-menu-all">
+                    <a href="" class="items-menu">操作一</a>
+                    <a href="" class="items-menu">操作二</a>
+                    <a href="" class="items-menu">操作三</a>
+                </div>
+            </div>
+        </div>
+        <div class="info right">
+            <a href="" class="items">
+                通知
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </a>
+            <a href="" class="items">信息<i class="fa fa-commenting-o" aria-hidden="true"></i></a>
+            <div class="items-set">
+                <a href="" class="items">用户</a>
+                <div class="items-menu-all" style="left:-51px">
+                    <a href="" class="items-menu">操作一</a>
+                    <a href="" class="items-menu">操作二</a>
+                    <a href="" class="items-menu">操作三</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pg-body">
+        <div class="pg-left left">
+            <div class="bl-menu">
+                <a href="/backend/article-0-0.html" class="bl-title">文章管理</a>
+                <div class="menu" id="menu">
+                    <a href="">添加</a>
+                    <a href="">修改</a>
+                    <a href="">删除</a>
+                </div>
+            </div>
+            <div class="bl-menu">
+                <a href="javascript:;" class="bl-title">报障管理</a>
+                <div class="menu" id="menu">
+                    <a href="" >添加</a>
+                    <a href="">修改</a>
+                    <a href="">删除</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pg-right right">
+            {% block article-info %}{% endblock %}
+        </div>
+    </div>
+
+
+    <script src="/static/jq/jquery-3.3.1.min.js"></script>
+    {% block js %}{% endblock %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+{#<div id="pg-left" class="pg-left left">#}
+{#            <div class="pg-menu">#}
+{#				<ul class="collapsed" style="list-style: none;padding: 0px">#}
+{#					<span href="" class="menuSpan">在线工具</span>#}
+{#					<li><a href="#">图像优化</a></li>#}
+{#					<li><a href="#">收藏家图标生成器</a></li>#}
+{#					<li><a href="#">邮件</a></li>#}
+{#				</ul>#}
+{#                <div>#}
+{##}
+{#			</div>#}
+{#			</div>#}
+{#            <div class="pg-menu">#}
+{#				<ul class="collapsed" style="list-style: none;padding: 0px">#}
+{#					<span class="menuSpan">支持我们</span>#}
+{#					<li><a href="#">图像优化</a></li>#}
+{#					<li><a href="#">收藏家图标生成器</a></li>#}
+{#					<li><a href="#">邮件</a></li>#}
+{#				</ul>#}
+{#			</div>#}
+{##}
+{#        </div>#}
+
